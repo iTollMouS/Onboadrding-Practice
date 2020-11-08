@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedTab = 0
-    
+    @State private var backgroundColor = Color.clear
     var body: some View {
         ZStack {
             
@@ -34,7 +34,12 @@ struct ContentView: View {
                 ButtonsHStackView(selectedTab: $selectedTab)
                     .padding()
             }
-        }.background(viewModel[selectedTab].color)
+        }.background(backgroundColor)
+        .onChange(of: selectedTab) { _ in
+            withAnimation(.spring()){
+                backgroundColor = viewModel[selectedTab].color
+            }
+        }
         .ignoresSafeArea()
     }
 }
@@ -45,4 +50,3 @@ struct ContentView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
-
