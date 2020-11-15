@@ -7,16 +7,18 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     
     @State private var selectedTab = 0
     @State private var backgroundColor = Color.clear
+    
     var body: some View {
         ZStack {
             
             TabView(selection: $selectedTab){
                 ForEach(viewModel, id: \.self){ item in
-                    
+
                     VStack(){
                         Image(systemName: item.mainImageName)
                             .resizable()
@@ -30,13 +32,14 @@ struct ContentView: View {
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             
+            
             VStack {
                 ButtonsHStackView(selectedTab: $selectedTab)
-                    .padding()
+                .padding()
             }
         }.background(backgroundColor)
         .onChange(of: selectedTab) { _ in
-            withAnimation(.spring()){
+            withAnimation{
                 backgroundColor = viewModel[selectedTab].color
             }
         }
