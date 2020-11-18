@@ -10,15 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // to track the paging circle index
     @State private var selectedTab = 0
+    // to change the bg color
     @State private var backgroundColor = Color.clear
     
     var body: some View {
+        // we made the zstack to make the bottons go above the TabView
         ZStack {
-            
+            // we pass in the page index $selectedTab
             TabView(selection: $selectedTab){
                 ForEach(viewModel, id: \.self){ item in
-
                     VStack(){
                         Image(systemName: item.mainImageName)
                             .resizable()
@@ -27,15 +29,14 @@ struct ContentView: View {
                         ForEach(item.detailViewModel, id: \.id){ detailViewModel in
                             DetailsHStackView(detailViewModel: detailViewModel)
                         }
-                    }.tag(viewModel.firstIndex(of: item) ?? 0)
-                    
+//                        Print(selectedTab)
+                    }.tag(viewModel.firstIndex(of: item) ?? 0) // <<-- it is important to update current index page
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             
-            
             VStack {
                 ButtonsHStackView(selectedTab: $selectedTab)
-                .padding()
+                    .padding()
             }
         }.background(backgroundColor)
         .onChange(of: selectedTab) { _ in

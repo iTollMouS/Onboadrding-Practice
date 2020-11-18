@@ -39,4 +39,4 @@ struct DetailsHStackView_Previews: PreviewProvider {
 
 
 let sampleDetailViewModel =  DetailViewModel(imageName: "slider.horizontal.below.rectangle", titleText: "Lorem Ipsum",
-                                              detailText: "Lorem Ipsum is simply dummy text of the printing and typesetting\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s")
+                                             detailText: "Lorem Ipsum is simply dummy text of the printing and typesetting\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s")

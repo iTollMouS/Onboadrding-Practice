@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-
-
 struct ButtonsHStackView: View {
     @Binding var selectedTab: Int
     var body: some View {
@@ -43,3 +40,22 @@ struct ButtonsHStackView: View {
         }
     }
 }
+
+struct ButtonViews: View {
+    @State var selectedTab: Int = 0
+    var body: some View{
+        ButtonsHStackView(selectedTab: $selectedTab)
+    }
+}
+
+struct ButtonViews_Preview: PreviewProvider {
+    static var previews: some View {
+        ZStack{
+            ButtonViews()
+        }
+        .preferredColorScheme(.dark)
+        .padding()
+        .previewLayout(.sizeThatFits)
+    }
+}
+
